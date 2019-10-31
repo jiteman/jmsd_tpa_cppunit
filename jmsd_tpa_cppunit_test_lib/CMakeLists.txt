@@ -13,14 +13,14 @@ set( JMSD_THIS_PROJECT_SOURCE_ROOT ${JMSD_COMPONENT_SOURCE_ROOT_PATH}/jmsd_tpa_c
 ## include dependencies
 set( ${PROJECT_NAME}_DEPENDENCY_DIRS_VAR
 	${JMSD_PLATFORM_SOURCES}
-	${tpc_cppunit_lib_DEPENDENCY_DIRS}
+	${jmsd_tpc_cppunit_lib_DEPENDENCY_DIRS}
 	${JMSD_THIS_PROJECT_SOURCE_ROOT} )
 list( REMOVE_DUPLICATES ${PROJECT_NAME}_DEPENDENCY_DIRS_VAR )
 include_directories( ${${PROJECT_NAME}_DEPENDENCY_DIRS_VAR} ${JMSD_THIS_PROJECT_SOURCE_ROOT} )
 
 
 ## this project headers and sources enumeration section
-foreach( directory ${tpc_cppunit_lib_TEST_SOURCE_DIRS} )
+foreach( directory ${jmsd_tpc_cppunit_lib_TEST_SOURCE_DIRS} )
 	list( APPEND test_header_and_source_files ${directory}/*.h* )
 	list( APPEND test_header_and_source_files ${directory}/*.c* )
 endforeach()
@@ -48,12 +48,12 @@ add_library( ${PROJECT_NAME} SHARED ${header_and_source_files} )
 
 ## definition section
 set( ${PROJECT_NAME}_BUILD_DEFINITIONS_VAR
-	${tpc_cppunit_lib_LINK_DEFINITIONS}
+	${jmsd_tpc_cppunit_lib_LINK_DEFINITIONS}
 	-DJMSD_TPA_CPPUNIT_TEST_LIB_SHARED_INTERFACE_INTERNAL )
 JMSD_LIST_TO_STRING( ${PROJECT_NAME}_BUILD_DEFINITIONS_VAR )
 JMSD_STRING_REMOVE_DUPLICATES( ${PROJECT_NAME}_BUILD_DEFINITIONS_VAR )
 set( ${PROJECT_NAME}_LINK_DEFINITIONS_VAR
-	${tpc_cppunit_lib_LINK_DEFINITIONS} )
+	${jmsd_tpc_cppunit_lib_LINK_DEFINITIONS} )
 JMSD_LIST_TO_STRING( ${PROJECT_NAME}_LINK_DEFINITIONS_VAR )
 JMSD_STRING_REMOVE_DUPLICATES( ${PROJECT_NAME}_LINK_DEFINITIONS_VAR )
 add_definitions( "${${PROJECT_NAME}_BUILD_DEFINITIONS_VAR}" )
@@ -67,8 +67,8 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES SOVERSION 0.1 )
 
 ## project target section
 set( ${PROJECT_NAME}_DEPENDENCY_LIBS_VAR
-	${tpc_cppunit_lib_DEPENDENCY_LIBS}
-	tpc_cppunit_lib )
+	${jmsd_tpc_cppunit_lib_DEPENDENCY_LIBS}
+	jmsd_tpc_cppunit_lib )
 list( REMOVE_DUPLICATES ${PROJECT_NAME}_DEPENDENCY_LIBS_VAR )
 target_link_libraries( ${PROJECT_NAME} ${${PROJECT_NAME}_DEPENDENCY_LIBS_VAR} )
 

@@ -1,45 +1,34 @@
 cmake_minimum_required( VERSION 3.7.1 )
 
-project( jmsd_tpa_cppunit_test_lib C CXX )
+project( jmsd_tpa_cppunit_clocker C CXX )
 
 
 JMSD_SHOW_PROJECT_HEADER()
 
 
-include( ${JMSD_COMPONENT_CMAKE_SETTINGS_PATH}/jmsd-tpa-cppunit-test-lib-set-compiler-settings.cmake )
-set( JMSD_THIS_PROJECT_SOURCE_ROOT ${JMSD_COMPONENT_SOURCE_ROOT_PATH}/jmsd_tpa_cppunit_test )
+include( ${JMSD_COMPONENT_CMAKE_SETTINGS_PATH}/jmsd-tpa-cppunit-clocker-set-compiler-settings.cmake )
+set( JMSD_THIS_PROJECT_SOURCE_ROOT ${JMSD_COMPONENT_SOURCE_ROOT_PATH}/jmsd_tpa_cppunit_clocker )
 
 
 ## include dependencies
 set( ${PROJECT_NAME}_DEPENDENCY_DIRS_VAR
 	${JMSD_PLATFORM_SOURCES}
-	${jmsd_tpa_cppunit_clocker_DEPENDENCY_DIRS}
+	${jmsd_tpc_cppunit_lib_DEPENDENCY_DIRS}
 	${JMSD_THIS_PROJECT_SOURCE_ROOT} )
 list( REMOVE_DUPLICATES ${PROJECT_NAME}_DEPENDENCY_DIRS_VAR )
 include_directories( ${${PROJECT_NAME}_DEPENDENCY_DIRS_VAR} ${JMSD_THIS_PROJECT_SOURCE_ROOT} )
 
 
 ## this project headers and sources enumeration section
-foreach( directory ${jmsd_tpc_cppunit_lib_TEST_SOURCE_DIRS} )
-	list( APPEND test_header_and_source_files ${directory}/*.h* )
-	list( APPEND test_header_and_source_files ${directory}/*.c* )
-endforeach()
-
 file( GLOB_RECURSE header_and_source_files
 	${JMSD_THIS_PROJECT_SOURCE_ROOT}/*.h*
-	${JMSD_THIS_PROJECT_SOURCE_ROOT}/*.c*
-	${test_header_and_source_files} )
-
+	${JMSD_THIS_PROJECT_SOURCE_ROOT}/*.c* )
+	
 set( JMSD_THIS_PROJECT_FILES_TO_REMOVE
-	"TestApp"
-	"Driver"
-	"CppUnitTestPlugIn.cpp" )
+	"ClockerPlugIn.cpp" )
 
-if( UNIX )
-elseif( WIN32 )
-	list( APPEND JMSD_THIS_PROJECT_FILES_TO_REMOVE
-		"NamedTuplesTest"
-		"TuplesTest" )
+if ( UNIX )
+	list( APPEND JMSD_THIS_PROJECT_FILES_TO_REMOVE "WinNtTimer" )
 endif()
 
 JMSD_REMOVE_FILES_FROM_THE_LIST( header_and_source_files JMSD_THIS_PROJECT_FILES_TO_REMOVE )
@@ -49,12 +38,12 @@ add_library( ${PROJECT_NAME} SHARED ${header_and_source_files} )
 
 ## definition section
 set( ${PROJECT_NAME}_BUILD_DEFINITIONS_VAR
-	${jmsd_tpa_cppunit_clocker_LINK_DEFINITIONS}
-	-DJMSD_TPA_CPPUNIT_TEST_LIB_SHARED_INTERFACE_INTERNAL )
+	${jmsd_tpc_cppunit_lib_LINK_DEFINITIONS}
+	-DJMSD_TPA_CPPUNIT_CLOCKER_TEMPLATE_SHARED_INTERFACE_INTERNAL )
 JMSD_LIST_TO_STRING( ${PROJECT_NAME}_BUILD_DEFINITIONS_VAR )
 JMSD_STRING_REMOVE_DUPLICATES( ${PROJECT_NAME}_BUILD_DEFINITIONS_VAR )
 set( ${PROJECT_NAME}_LINK_DEFINITIONS_VAR
-	${jmsd_tpa_cppunit_clocker_LINK_DEFINITIONS} )
+	${jmsd_tpc_cppunit_lib_LINK_DEFINITIONS} )
 JMSD_LIST_TO_STRING( ${PROJECT_NAME}_LINK_DEFINITIONS_VAR )
 JMSD_STRING_REMOVE_DUPLICATES( ${PROJECT_NAME}_LINK_DEFINITIONS_VAR )
 add_definitions( "${${PROJECT_NAME}_BUILD_DEFINITIONS_VAR}" )
@@ -68,8 +57,8 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES SOVERSION 0.1 )
 
 ## project target section
 set( ${PROJECT_NAME}_DEPENDENCY_LIBS_VAR
-	${jmsd_tpa_cppunit_clocker_DEPENDENCY_LIBS}
-	jmsd_tpa_cppunit_clocker )
+	${jmsd_tpc_cppunit_lib_DEPENDENCY_LIBS}
+	jmsd_tpc_cppunit_lib )
 list( REMOVE_DUPLICATES ${PROJECT_NAME}_DEPENDENCY_LIBS_VAR )
 target_link_libraries( ${PROJECT_NAME} ${${PROJECT_NAME}_DEPENDENCY_LIBS_VAR} )
 

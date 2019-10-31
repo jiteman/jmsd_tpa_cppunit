@@ -3,9 +3,10 @@ JMSD_CMAKE_CURRENT_FILE_IN( "${JMSD_FOREIGN_COMPONENT_FULL_NAME}-linux-compiler-
 if ( UNIX )
 	set( ${PROJECT_NAME}_CXX_FLAGS ${CMAKE_CXX_FLAGS} )
 
-	list( APPEND ${PROJECT_NAME}_CXX_FLAGS "-Wno-float-equal" ) # comparing floating point with == or != is unsafe
-	list( APPEND ${PROJECT_NAME}_CXX_FLAGS "-Wno-missing-declarations" ) # no previous declaration for ‘’
+	## list( APPEND ${PROJECT_NAME}_CXX_FLAGS "-W" ) #
+	list( APPEND ${PROJECT_NAME}_CXX_FLAGS "-Wno-unused-parameter" ) # unused parameter ‘’
 	list( APPEND ${PROJECT_NAME}_CXX_FLAGS "-Wno-conversion" ) # conversion from ‘’ {aka ‘’} to ‘’ may change value
+	list( APPEND ${PROJECT_NAME}_CXX_FLAGS "-Wno-format-nonliteral" ) # format not a string literal, argument types not checked
 
 	string( REPLACE ";" " " ${PROJECT_NAME}_CXX_FLAGS_STR "${${PROJECT_NAME}_CXX_FLAGS}" )
 

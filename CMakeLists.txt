@@ -12,7 +12,7 @@ set( JMSD_COMPONENT_CMAKE_SETTINGS_PATH ${PROJECT_SOURCE_DIR}/_cmake_settings )
 
 add_subdirectory( jmsd_tpa_cppunit_clocker )
 add_subdirectory( jmsd_tpa_cppunit_test_lib )
-#add_subdirectory( jmsd_tpa_cppunit_tests )
+add_subdirectory( jmsd_tpa_cppunit_tests )
 #add_subdirectory( jmsd_tpa_cppunit_poco )
 
 

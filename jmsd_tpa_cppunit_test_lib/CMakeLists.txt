@@ -35,13 +35,6 @@ set( JMSD_THIS_PROJECT_FILES_TO_REMOVE
 	"Driver"
 	"CppUnitTestPlugIn.cpp" )
 
-if( UNIX )
-elseif( WIN32 )
-	list( APPEND JMSD_THIS_PROJECT_FILES_TO_REMOVE
-		"NamedTuplesTest"
-		"TuplesTest" )
-endif()
-
 JMSD_REMOVE_FILES_FROM_THE_LIST( header_and_source_files JMSD_THIS_PROJECT_FILES_TO_REMOVE )
 
 add_library( ${PROJECT_NAME} SHARED ${header_and_source_files} )

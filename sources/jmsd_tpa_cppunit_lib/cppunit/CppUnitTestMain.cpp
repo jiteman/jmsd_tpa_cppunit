@@ -20,10 +20,6 @@
 
 
 int test_cppunit_main( int const /*argc*/, char const *const /*argv*/ [] ) {
-//	CPPUNIT_NS::TextTestRunner text_test_runner;
-//	text_test_runner.addTest( CPPUNIT_NS::TestFactoryRegistry::getRegistry().makeTest() );
-//	text_test_runner.run();
-
 	CPPUNIT_NS::TestResult controller;
 
 	CPPUNIT_NS::TestResultCollector result;
@@ -32,17 +28,11 @@ int test_cppunit_main( int const /*argc*/, char const *const /*argv*/ [] ) {
 	CPPUNIT_NS::TextTestProgressListener progress;
 	controller.addListener( &progress );
 
-	CPPUNIT_NS::TextTestRunner text_test_runner;
-	text_test_runner.addTest( CPPUNIT_NS::TestFactoryRegistry::getRegistry().makeTest() );
-	text_test_runner.run();
-
 	// Add the top suite to the test runner
 	CPPUNIT_NS::TestRunner runner;
 	runner.addTest( CPPUNIT_NS::TestFactoryRegistry::getRegistry().makeTest() );
 
 	try {
-//		CPPUNIT_NS::stdCOut() << "Running "  <<  testPath;
-//		runner.run( controller, testPath );
 		runner.run( controller );
 	} catch ( CPPUNIT_NS::Exception const &an_exception ) {
 		::std::cout << ::std::endl;

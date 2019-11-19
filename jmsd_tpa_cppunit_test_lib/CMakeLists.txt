@@ -33,7 +33,8 @@ file( GLOB_RECURSE header_and_source_files
 set( JMSD_THIS_PROJECT_FILES_TO_REMOVE
 	"TestApp"
 	"Driver"
-	"CppUnitTestPlugIn.cpp" )
+	"CppUnitTestPlugIn"
+	"CppUnitTestMain" )
 
 JMSD_REMOVE_FILES_FROM_THE_LIST( header_and_source_files JMSD_THIS_PROJECT_FILES_TO_REMOVE )
 

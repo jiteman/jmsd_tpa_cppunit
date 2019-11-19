@@ -1,6 +1,6 @@
-#include "cppunit/CppUnitTestMain.h"
+#include "jmsd/tpa/cppunit/tpa_cppunit_test_main.h"
 
 
 int main( int const argc, char const *const argv[] ) {
-	return test_cppunit_main( argc, argv );
+	return ::jmsd::tpa::cppunit::tpa_cppunit_test_main( argc, argv );
 }

@@ -1,4 +1,4 @@
-set( JMSD_COMPONENT_BASE_NAME jmsd-tpa-cppunit )
+set( JMSD_COMPONENT_BASE_NAME tpa-cppunit )
 set( JMSD_COMPONENT_LAST_NAME clocker )
 
 

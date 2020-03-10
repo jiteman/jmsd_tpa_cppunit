@@ -7,6 +7,7 @@ if ( UNIX )
 	list( APPEND ${PROJECT_NAME}_CXX_FLAGS "-Wno-unused-parameter" ) # unused parameter ‘’
 	list( APPEND ${PROJECT_NAME}_CXX_FLAGS "-Wno-conversion" ) # conversion from ‘’ {aka ‘’} to ‘’ may change value
 	list( APPEND ${PROJECT_NAME}_CXX_FLAGS "-Wno-format-nonliteral" ) # format not a string literal, argument types not checked
+	list( APPEND ${PROJECT_NAME}_CXX_FLAGS "-Wno-inline" ) # inlining failed in call to '' call is unlikely and code size would grow
 
 	string( REPLACE ";" " " ${PROJECT_NAME}_CXX_FLAGS_STR "${${PROJECT_NAME}_CXX_FLAGS}" )
 
